@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Paragraph
     const para = document.createElement('p');
-    para.textContent = 'Quickly install osu! on computers where the main site is blocked.';
+    para.textContent = 'Remember, clicking circles is quite important.';
     container.appendChild(para);
 
     // Stable osu! button
@@ -169,3 +169,4 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
