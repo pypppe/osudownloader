@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(overlay);
 
     // Change subtext over time
-    setTimeout(() => { subText.textContent = 'Checking images..'; }, 3000); // after 3 seconds
-    setTimeout(() => { subText.textContent = 'Checking Connection..'; }, 2000); // 1 second after previous
-    setTimeout(() => { subText.textContent = 'Loading Finished!'; }, 12000); // 3 seconds before fade out
+    setTimeout(() => { subText.textContent = 'Running Scripts...'; }, 3000); // after 3 seconds
+    setTimeout(() => { subText.textContent = 'Checking Images...'; }, 2000); // 1 second after previous
+    setTimeout(() => { subText.textContent = 'Finished! ✅'; }, 12000); // 3 seconds before fade out
 
     // Hide overlay after 15 seconds
     setTimeout(() => {
