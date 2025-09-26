@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sourceNote = document.createElement('p');
     sourceNote.style.marginTop = '10px';
     sourceNote.style.fontSize = '14px';
-    sourceNote.style.color = '#888';
+    sourceNote.style.color = '#006aff';
 
     const sourceLink = document.createElement('a');
     sourceLink.href = 'https://github.com/pypppe/osudownloader';
@@ -317,3 +317,4 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
