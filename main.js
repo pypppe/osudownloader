@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sourceLink.href = 'https://github.com/pypppe/osudownloader';
     sourceLink.target = '_blank';
     sourceLink.className = 'source-link';
-    sourceLink.textContent = 'Think this site is malicious? check the source code!';
+    sourceLink.textContent = 'Think this site is malicious? check the source code! (GitHub)';
 
     sourceNote.appendChild(sourceLink);
     infoContainer.appendChild(sourceNote);
@@ -317,4 +317,5 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
 
