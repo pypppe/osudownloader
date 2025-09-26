@@ -108,7 +108,7 @@ let lastTime = null;
 let waitStart = null;
 let growDuration = 150; // ms
 let shrinkDuration = 500; // ms
-let waitDuration = 1000; // ms
+let waitDuration = 300; // ms
 
 function pulseLogo(timestamp) {
     if (!lastTime) lastTime = timestamp;
@@ -282,5 +282,6 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
