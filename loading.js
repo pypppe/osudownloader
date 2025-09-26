@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Title
     const titleText = document.createElement('h1');
-    titleText.textContent = 'osu! downloader';
+    titleText.textContent = 'Open Source osu! Downloader.';
     titleText.style.fontSize = '36px';
     titleText.style.marginBottom = '20px';
     overlay.appendChild(titleText);
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingInterval = setInterval(() => {
         loadingText.textContent = loadingStates[loadingIndex];
         loadingIndex = (loadingIndex + 1) % loadingStates.length;
-    }, 1000); // change every 1 second
+    }, 500); // change every 0.5 second
 
     // Subtext for verification steps
     const subText = document.createElement('p');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Change subtext over time
     setTimeout(() => { subText.textContent = 'Checking images..'; }, 3000); // after 3 seconds
-    setTimeout(() => { subText.textContent = 'Checking Connection..'; }, 4000); // 1 second after previous
+    setTimeout(() => { subText.textContent = 'Checking Connection..'; }, 2000); // 1 second after previous
     setTimeout(() => { subText.textContent = 'Loading Finished!'; }, 12000); // 3 seconds before fade out
 
     // Hide overlay after 15 seconds
