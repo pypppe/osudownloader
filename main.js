@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Footer
     const footer = document.createElement('div');
     footer.className = 'footer';
-    footer.textContent = 'Made with care for osu! players';
+    footer.textContent = 'osu! downloads might be blocked.';
     container.appendChild(footer);
 
     const footerNote = document.createElement('div');
@@ -169,4 +169,5 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
 
