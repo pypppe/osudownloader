@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         align-items: center;
         gap: 10px;
     }
-    h1 img { height: 40px; width: auto; }
+    h1 img { height: 40px; width: auto; transform-origin: center; }
     p { font-size: 16px; margin-bottom: 30px; color: #B0B0B0; }
     a button, .lazer-btn {
         background-color: #FF4C6D;
@@ -87,14 +87,33 @@ document.addEventListener('DOMContentLoaded', function() {
     container.className = 'container';
     document.body.appendChild(container);
 
-    // Title
+    // Title with logo
     const title = document.createElement('h1');
     title.textContent = 'Download ';
     const img = document.createElement('img');
     img.src = 'https://r1.astrarune.com/osu.png';
     img.alt = 'osu.png';
+    img.style.display = 'block';
+    img.style.height = '40px';
+    img.style.width = 'auto';
+    img.style.transformOrigin = 'center';
     title.appendChild(img);
     container.appendChild(title);
+
+    // Pulse animation
+    let bpm = 120; // Beats per minute
+    let scaleMin = 0.9;
+    let scaleMax = 1.1;
+    let startTime = null;
+    function pulseLogo(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let elapsed = timestamp - startTime;
+        let beat = (elapsed / 1000) * (bpm / 60);
+        let scale = scaleMin + (scaleMax - scaleMin) * 0.5 * (1 + Math.sin(beat * 2 * Math.PI));
+        img.style.transform = `scale(${scale})`;
+        requestAnimationFrame(pulseLogo);
+    }
+    requestAnimationFrame(pulseLogo);
 
     // Paragraph
     const para = document.createElement('p');
