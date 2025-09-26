@@ -249,16 +249,16 @@ requestAnimationFrame(pulseLogo);
     popup.className = 'popup';
 
     const popupTitle = document.createElement('h2');
-    popupTitle.textContent = 'WARNING';
+    popupTitle.textContent = '⚠️ Warning ⚠️';
     popup.appendChild(popupTitle);
 
     const popupText = document.createElement('p');
-    popupText.textContent = 'Warning, Lazer might be extremely laggy or crash at times. Stable is recommended for low-end devices (PC ONLY)';
+    popupText.textContent = 'osu!lazer can be laggy, however using an OptiPlex 3080 will make it run smoothly, do you wish to proceed?';
     popup.appendChild(popupText);
 
     const okBtn = document.createElement('button');
     okBtn.id = 'ok-btn';
-    okBtn.textContent = 'Ok, I understand.';
+    okBtn.textContent = 'Yes, gimmie the download!';
     okBtn.onclick = () => {
         window.location.href = 'https://github.com/ppy/osu/releases/latest/download/install.exe';
         popupOverlay.style.display = 'none';
@@ -267,7 +267,7 @@ requestAnimationFrame(pulseLogo);
 
     const neverBtn = document.createElement('button');
     neverBtn.id = 'never-btn';
-    neverBtn.textContent = 'Nevermind!';
+    neverBtn.textContent = 'Nevermind, gimmie osu!stable!';
     neverBtn.onclick = () => {
         window.location.href = 'https://m1.ppy.sh/r/osu!install.exe';
         popupOverlay.style.display = 'none';
@@ -282,6 +282,7 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
 
