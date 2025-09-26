@@ -264,23 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     container.appendChild(infoContainer);
 
-    // engine
-        const sourceNote = document.createElement('p');
-    sourceNote.style.marginTop = '10px';
-    sourceNote.style.fontSize = '14px';
-    sourceNote.style.color = '#006aff';
-
-    const sourceLink = document.createElement('a');
-    sourceLink.href = 'https://github.com/ppy/osu';
-    sourceLink.target = '_blank';
-    sourceLink.className = 'source-link';
-    sourceLink.textContent = 'osu!lazer GitHub Repo.';
-
-    sourceNote.appendChild(sourceLink);
-    infoContainer.appendChild(sourceNote);
-
-    container.appendChild(infoContainer);
-
     // Footer
     const footer = document.createElement('div');
     footer.className = 'footer';
@@ -334,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
 
