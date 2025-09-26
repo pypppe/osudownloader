@@ -91,7 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const title = document.createElement('h1');
     title.textContent = 'Download ';
     const img = document.createElement('img');
-    img.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
+    const defaultSrc = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
+    const hoverSrc = 'https://r1.astrarune.com/osu.png';
+    img.src = defaultSrc;
     img.alt = 'osu.png';
     img.style.display = 'block';
     img.style.height = '40px';
@@ -100,47 +102,51 @@ document.addEventListener('DOMContentLoaded', function() {
     title.appendChild(img);
     container.appendChild(title);
 
-// Pulse animation: quick grow, slow shrink, wait 1s, repeat
-let scaleMin = 0.9;
-let scaleMax = 1.15;
-let phase = 'growing'; // growing, shrinking, waiting
-let lastTime = null;
-let waitStart = null;
-let growDuration = 150; // ms
-let shrinkDuration = 500; // ms
-let waitDuration = 500; // ms
+    // Hover swap for logo
+    img.addEventListener('mouseenter', () => { img.src = hoverSrc; });
+    img.addEventListener('mouseleave', () => { img.src = defaultSrc; });
 
-function pulseLogo(timestamp) {
-    if (!lastTime) lastTime = timestamp;
-    const delta = timestamp - lastTime;
-    lastTime = timestamp;
+    // Pulse animation: quick grow, slow shrink, wait 0.5s, repeat
+    let scaleMin = 0.9;
+    let scaleMax = 1.15;
+    let phase = 'growing'; // growing, shrinking, waiting
+    let lastTime = null;
+    let waitStart = null;
+    let growDuration = 150; // ms
+    let shrinkDuration = 500; // ms
+    let waitDuration = 500; // ms
 
-    let currentScale = parseFloat(img.style.transform.replace(/scale\(|\)/g, '')) || 1;
+    function pulseLogo(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const delta = timestamp - lastTime;
+        lastTime = timestamp;
 
-    if (phase === 'growing') {
-        currentScale += (scaleMax - scaleMin) * (delta / growDuration);
-        if (currentScale >= scaleMax) {
-            currentScale = scaleMax;
-            phase = 'shrinking';
+        let currentScale = parseFloat(img.style.transform.replace(/scale\(|\)/g, '')) || 1;
+
+        if (phase === 'growing') {
+            currentScale += (scaleMax - scaleMin) * (delta / growDuration);
+            if (currentScale >= scaleMax) {
+                currentScale = scaleMax;
+                phase = 'shrinking';
+            }
+        } else if (phase === 'shrinking') {
+            currentScale -= (scaleMax - scaleMin) * (delta / shrinkDuration);
+            if (currentScale <= scaleMin) {
+                currentScale = scaleMin;
+                phase = 'waiting';
+                waitStart = timestamp;
+            }
+        } else if (phase === 'waiting') {
+            if (timestamp - waitStart >= waitDuration) {
+                phase = 'growing';
+            }
         }
-    } else if (phase === 'shrinking') {
-        currentScale -= (scaleMax - scaleMin) * (delta / shrinkDuration);
-        if (currentScale <= scaleMin) {
-            currentScale = scaleMin;
-            phase = 'waiting';
-            waitStart = timestamp;
-        }
-    } else if (phase === 'waiting') {
-        if (timestamp - waitStart >= waitDuration) {
-            phase = 'growing';
-        }
+
+        img.style.transform = `scale(${currentScale})`;
+        requestAnimationFrame(pulseLogo);
     }
 
-    img.style.transform = `scale(${currentScale})`;
     requestAnimationFrame(pulseLogo);
-}
-
-requestAnimationFrame(pulseLogo);
 
     // Paragraph
     const para = document.createElement('p');
@@ -162,32 +168,26 @@ requestAnimationFrame(pulseLogo);
     lazerButton.textContent = 'Download osu!lazer';
     container.appendChild(lazerButton);
 
-    // === Add the new info section below buttons ===
+    // Info Section
     const infoContainer = document.createElement('div');
     infoContainer.style.textAlign = 'left';
     infoContainer.style.marginTop = '20px';
     infoContainer.style.lineHeight = '1.5';
     infoContainer.style.color = '#DDD';
 
-    // Often Updates
     const oftenUpdatesTitle = document.createElement('h3');
     oftenUpdatesTitle.textContent = 'Often Updates';
     oftenUpdatesTitle.style.marginBottom = '6px';
     infoContainer.appendChild(oftenUpdatesTitle);
 
     const oftenUpdatesList = document.createElement('ul');
-    const oftenItems = [
-        'osu!stable - only gets bug fixes.',
-        'osu!lazer - gets updates nearly daily.'
-    ];
-    oftenItems.forEach(text => {
+    ['osu!stable - only gets bug fixes.','osu!lazer - gets updates nearly daily.'].forEach(text => {
         const li = document.createElement('li');
         li.textContent = text;
         oftenUpdatesList.appendChild(li);
     });
     infoContainer.appendChild(oftenUpdatesList);
 
-    // Important Note
     const importantNoteTitle = document.createElement('h3');
     importantNoteTitle.textContent = 'Important Note:';
     importantNoteTitle.style.marginBottom = '6px';
@@ -195,18 +195,13 @@ requestAnimationFrame(pulseLogo);
     infoContainer.appendChild(importantNoteTitle);
 
     const importantNoteList = document.createElement('ul');
-    const importantItems = [
-        'osu!stable is recommended for low-end devices.',
-        'osu!lazer is recommended for PCs using OptiPlex 3080 or better.'
-    ];
-    importantItems.forEach(text => {
+    ['osu!stable is recommended for low-end devices.','osu!lazer is recommended for PCs using OptiPlex 3080 or better.'].forEach(text => {
         const li = document.createElement('li');
         li.textContent = text;
         importantNoteList.appendChild(li);
     });
     infoContainer.appendChild(importantNoteList);
 
-    // iOS notes
     const iosTitle = document.createElement('h3');
     iosTitle.textContent = 'iOS notes:';
     iosTitle.style.marginBottom = '6px';
@@ -214,20 +209,13 @@ requestAnimationFrame(pulseLogo);
     infoContainer.appendChild(iosTitle);
 
     const iosList = document.createElement('ul');
-    const iosItems = [
-        'osu!stable is not on iOS or Android, nor is it open-sourced, a mobile port is not coming.',
-        'osu!lazer is on iOS and Android, however i don’t think phones are blocked.',
-        'osu!stream is the 2012 version of osu! and is not updated.'
-    ];
-    iosItems.forEach(text => {
+    ['osu!stable is not on iOS or Android, nor is it open-sourced, a mobile port is not coming.','osu!lazer is on iOS and Android, however i don’t think phones are blocked.','osu!stream is the 2012 version of osu! and is not updated.'].forEach(text => {
         const li = document.createElement('li');
         li.textContent = text;
         iosList.appendChild(li);
     });
     infoContainer.appendChild(iosList);
-
     container.appendChild(infoContainer);
-    // === End of info section ===
 
     // Footer
     const footer = document.createElement('div');
@@ -282,11 +270,3 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
-
-
-
-
-
-
-
-
