@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>osu! is a click away!</title>
     <link rel="icon" href="https://r1.astrarune.com/osu.png" type="image/png">
+
+    <!-- Title rotation script -->
     <script>
         const titles = [
             "osu! is a click away!",
@@ -22,12 +24,13 @@
         setInterval(() => {
             titleTag.textContent = titles[index];
             index = (index + 1) % titles.length;
-        }, 2000); // change every 5 seconds
+        }, 2000); // change every 2 seconds
     </script>
+
+    <script src="loading.js"></script>
+
     <script src="main.js"></script>
 </head>
 <body>
 </body>
 </html>
-
-
