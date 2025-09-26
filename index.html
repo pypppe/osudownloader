@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <title>osu! is a click away!</title>
     <link rel="icon" href="https://r1.astrarune.com/osu.png" type="image/png">
+    <script>
+        const titles = [
+            "osu! is a click away!",
+            "Click the Circles!",
+            "Dean Herbert",
+            "Download osu!",
+            "FREE RAM NO WAY!",
+            "osu!lazer or osu!stable",
+            "adrian"
+        ];
+        let index = 0;
+        const titleTag = document.querySelector('title');
+        setInterval(() => {
+            titleTag.textContent = titles[index];
+            index = (index + 1) % titles.length;
+        }, 5000); // change every 5 seconds
+    </script>
     <script src="main.js"></script>
 </head>
 <body>
 </body>
 </html>
-
