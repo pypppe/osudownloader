@@ -100,30 +100,43 @@ document.addEventListener('DOMContentLoaded', function() {
     title.appendChild(img);
     container.appendChild(title);
 
-// Pulse animation (quick grow, slow shrink)
-let bpm = 120; // beats per minute
+// Pulse animation: quick grow, slow shrink, wait 1s, repeat
 let scaleMin = 0.9;
 let scaleMax = 1.15;
-let startTime = null;
+let phase = 'growing'; // growing, shrinking, waiting
+let lastTime = null;
+let waitStart = null;
+let growDuration = 150; // ms
+let shrinkDuration = 500; // ms
+let waitDuration = 1000; // ms
 
 function pulseLogo(timestamp) {
-    if (!startTime) startTime = timestamp;
-    let elapsed = timestamp - startTime;
-    let beatProgress = (elapsed / 1000) * (bpm / 60); // beats elapsed
+    if (!lastTime) lastTime = timestamp;
+    const delta = timestamp - lastTime;
+    lastTime = timestamp;
 
-    // Create asymmetric pulse: quick up, slow down
-    // Math.sin gives smooth oscillation; use pow for slower return
-    let raw = Math.sin(beatProgress * 2 * Math.PI); // -1 to 1
-    let scale;
-    if (raw >= 0) {
-        // quick grow
-        scale = scaleMin + (scaleMax - scaleMin) * raw;
-    } else {
-        // slow shrink
-        scale = scaleMin + (scaleMax - scaleMin) * Math.pow(-raw, 0.3); // slows down shrink
+    let currentScale = parseFloat(img.style.transform.replace(/scale\(|\)/g, '')) || 1;
+
+    if (phase === 'growing') {
+        currentScale += (scaleMax - scaleMin) * (delta / growDuration);
+        if (currentScale >= scaleMax) {
+            currentScale = scaleMax;
+            phase = 'shrinking';
+        }
+    } else if (phase === 'shrinking') {
+        currentScale -= (scaleMax - scaleMin) * (delta / shrinkDuration);
+        if (currentScale <= scaleMin) {
+            currentScale = scaleMin;
+            phase = 'waiting';
+            waitStart = timestamp;
+        }
+    } else if (phase === 'waiting') {
+        if (timestamp - waitStart >= waitDuration) {
+            phase = 'growing';
+        }
     }
 
-    img.style.transform = `scale(${scale})`;
+    img.style.transform = `scale(${currentScale})`;
     requestAnimationFrame(pulseLogo);
 }
 
@@ -269,4 +282,5 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
