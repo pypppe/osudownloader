@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const footerNote = document.createElement('div');
     footerNote.className = 'footer-note';
-    footerNote.textContent = 'Not for iOS or Android for now.';
+    footerNote.textContent = 'new site design!';
     container.appendChild(footerNote);
 
     // Popup
@@ -317,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
 
