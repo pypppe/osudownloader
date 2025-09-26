@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Paragraph
     const para = document.createElement('p');
-    para.textContent = 'Remember, clicking circles is quite important.';
+    para.textContent = 'Tip: hover over the osu logo ;)';
     container.appendChild(para);
 
     // Stable osu! button
@@ -317,5 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
