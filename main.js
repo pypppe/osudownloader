@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     #never-btn:hover { background-color: #777; }
     .footer { margin-top: 20px; font-size: 12px; color: #888; }
     .footer-note { font-size: 12px; color: #888; margin-top: 5px; }
+    a.source-link:hover { color: #FF3653; text-decoration: underline; }
     `;
     document.head.appendChild(style);
 
@@ -153,48 +154,48 @@ document.addEventListener('DOMContentLoaded', function() {
     para.textContent = 'Remember, clicking circles is quite important.';
     container.appendChild(para);
 
-// Stable osu! button
-const stableLink = document.createElement('a');
-stableLink.href = 'https://m1.ppy.sh/r/osu!install.exe';
-stableLink.target = '_blank';
-const stableButton = document.createElement('button');
+    // Stable osu! button
+    const stableLink = document.createElement('a');
+    stableLink.href = 'https://m1.ppy.sh/r/osu!install.exe';
+    stableLink.target = '_blank';
+    const stableButton = document.createElement('button');
 
-// Stable button content
-const stableText = document.createElement('span');
-stableText.textContent = 'Download ';
-stableButton.appendChild(stableText);
+    // Stable button content
+    const stableText = document.createElement('span');
+    stableText.textContent = 'Download ';
+    stableButton.appendChild(stableText);
 
-const stableImg = document.createElement('img');
-stableImg.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
-stableImg.alt = 'osu.png';
-stableImg.style.height = '30px';
-stableImg.style.width = 'auto';
-stableImg.style.verticalAlign = 'middle';
-stableImg.style.marginLeft = '6px';
-stableButton.appendChild(stableImg);
+    const stableImg = document.createElement('img');
+    stableImg.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
+    stableImg.alt = 'osu.png';
+    stableImg.style.height = '30px';
+    stableImg.style.width = 'auto';
+    stableImg.style.verticalAlign = 'middle';
+    stableImg.style.marginLeft = '6px';
+    stableButton.appendChild(stableImg);
 
-stableLink.appendChild(stableButton);
-container.appendChild(stableLink);
+    stableLink.appendChild(stableButton);
+    container.appendChild(stableLink);
 
-// Lazer button
-const lazerButton = document.createElement('button');
-lazerButton.className = 'lazer-btn';
+    // Lazer button
+    const lazerButton = document.createElement('button');
+    lazerButton.className = 'lazer-btn';
 
-// Lazer button content
-const lazerText = document.createElement('span');
-lazerText.textContent = 'Download ';
-lazerButton.appendChild(lazerText);
+    // Lazer button content
+    const lazerText = document.createElement('span');
+    lazerText.textContent = 'Download ';
+    lazerButton.appendChild(lazerText);
 
-const lazerImg = document.createElement('img');
-lazerImg.src = 'https://r1.astrarune.com/osu.png';
-lazerImg.alt = 'osu.png';
-lazerImg.style.height = '30px';
-lazerImg.style.width = 'auto';
-lazerImg.style.verticalAlign = 'middle';
-lazerImg.style.marginLeft = '6px';
-lazerButton.appendChild(lazerImg);
+    const lazerImg = document.createElement('img');
+    lazerImg.src = 'https://r1.astrarune.com/osu.png';
+    lazerImg.alt = 'osu.png';
+    lazerImg.style.height = '30px';
+    lazerImg.style.width = 'auto';
+    lazerImg.style.verticalAlign = 'middle';
+    lazerImg.style.marginLeft = '6px';
+    lazerButton.appendChild(lazerImg);
 
-container.appendChild(lazerButton);
+    container.appendChild(lazerButton);
 
     // Info Section
     const infoContainer = document.createElement('div');
@@ -237,12 +238,30 @@ container.appendChild(lazerButton);
     infoContainer.appendChild(iosTitle);
 
     const iosList = document.createElement('ul');
-    ['osu!stable is not on iOS or Android, nor is it open-sourced, a mobile port is not coming.','osu!lazer is on iOS and Android, however i don’t think phones are blocked.','osu!stream is the 2012 version of osu! and is not updated.'].forEach(text => {
+    ['osu!stable is not on iOS or Android, nor is it open-sourced, a mobile port is not coming.',
+     'osu!lazer is on iOS and Android, however i don’t think phones are blocked.',
+     'osu!stream is the 2012 version of osu! and is not updated.'].forEach(text => {
         const li = document.createElement('li');
         li.textContent = text;
         iosList.appendChild(li);
     });
     infoContainer.appendChild(iosList);
+
+    // New source code note
+    const sourceNote = document.createElement('p');
+    sourceNote.style.marginTop = '10px';
+    sourceNote.style.fontSize = '14px';
+    sourceNote.style.color = '#888';
+
+    const sourceLink = document.createElement('a');
+    sourceLink.href = 'https://github.com/pypppe/osudownloader';
+    sourceLink.target = '_blank';
+    sourceLink.className = 'source-link';
+    sourceLink.textContent = 'Think this site is malicious? check the source code!';
+
+    sourceNote.appendChild(sourceLink);
+    infoContainer.appendChild(sourceNote);
+
     container.appendChild(infoContainer);
 
     // Footer
@@ -298,6 +317,3 @@ container.appendChild(lazerButton);
         popupOverlay.style.display = 'flex';
     };
 });
-
-
-
