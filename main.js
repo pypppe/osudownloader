@@ -167,7 +167,7 @@ stableButton.appendChild(stableText);
 const stableImg = document.createElement('img');
 stableImg.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
 stableImg.alt = 'osu.png';
-stableImg.style.height = '20px';
+stableImg.style.height = '30px';
 stableImg.style.width = 'auto';
 stableImg.style.verticalAlign = 'middle';
 stableImg.style.marginLeft = '6px';
@@ -298,5 +298,6 @@ container.appendChild(lazerButton);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
