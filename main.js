@@ -153,20 +153,48 @@ document.addEventListener('DOMContentLoaded', function() {
     para.textContent = 'Remember, clicking circles is quite important.';
     container.appendChild(para);
 
-    // Stable osu! button
-    const stableLink = document.createElement('a');
-    stableLink.href = 'https://m1.ppy.sh/r/osu!install.exe';
-    stableLink.target = '_blank';
-    const stableButton = document.createElement('button');
-    stableButton.textContent = 'Download osu!stable';
-    stableLink.appendChild(stableButton);
-    container.appendChild(stableLink);
+// Stable osu! button
+const stableLink = document.createElement('a');
+stableLink.href = 'https://m1.ppy.sh/r/osu!install.exe';
+stableLink.target = '_blank';
+const stableButton = document.createElement('button');
 
-    // Lazer button
-    const lazerButton = document.createElement('button');
-    lazerButton.className = 'lazer-btn';
-    lazerButton.textContent = 'Download osu!lazer';
-    container.appendChild(lazerButton);
+// Stable button content
+const stableText = document.createElement('span');
+stableText.textContent = 'Download ';
+stableButton.appendChild(stableText);
+
+const stableImg = document.createElement('img');
+stableImg.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
+stableImg.alt = 'osu.png';
+stableImg.style.height = '20px';
+stableImg.style.width = 'auto';
+stableImg.style.verticalAlign = 'middle';
+stableImg.style.marginLeft = '6px';
+stableButton.appendChild(stableImg);
+
+stableLink.appendChild(stableButton);
+container.appendChild(stableLink);
+
+// Lazer button
+const lazerButton = document.createElement('button');
+lazerButton.className = 'lazer-btn';
+
+// Lazer button content
+const lazerText = document.createElement('span');
+lazerText.textContent = 'Download ';
+lazerButton.appendChild(lazerText);
+
+const lazerImg = document.createElement('img');
+lazerImg.src = 'https://r1.astrarune.com/osu.png';
+lazerImg.alt = 'osu.png';
+lazerImg.style.height = '20px';
+lazerImg.style.width = 'auto';
+lazerImg.style.verticalAlign = 'middle';
+lazerImg.style.marginLeft = '6px';
+lazerButton.appendChild(lazerImg);
+
+container.appendChild(lazerButton);
 
     // Info Section
     const infoContainer = document.createElement('div');
@@ -270,3 +298,4 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
