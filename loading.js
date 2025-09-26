@@ -17,32 +17,47 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.style.color = '#E0E0E0';
     overlay.style.fontFamily = 'Inter, sans-serif';
     
-    // Loading text
-    const loadingText = document.createElement('h1');
+    // Title
+    const titleText = document.createElement('h1');
+    titleText.textContent = 'osu! downloader';
+    titleText.style.fontSize = '36px';
+    titleText.style.marginBottom = '20px';
+    overlay.appendChild(titleText);
+
+    // Animated loading text
+    const loadingText = document.createElement('h2');
     loadingText.textContent = 'Loading...';
-    loadingText.style.fontSize = '32px';
+    loadingText.style.fontSize = '28px';
     loadingText.style.marginBottom = '10px';
     overlay.appendChild(loadingText);
-    
-    // Subtext
+
+    const loadingStates = ['Loading...', 'Loading..', 'Loading.', 'Loading..'];
+    let loadingIndex = 0;
+    const loadingInterval = setInterval(() => {
+        loadingText.textContent = loadingStates[loadingIndex];
+        loadingIndex = (loadingIndex + 1) % loadingStates.length;
+    }, 1000); // change every 1 second
+
+    // Subtext for verification steps
     const subText = document.createElement('p');
-    subText.textContent = 'Please Wait..';
-    subText.style.fontSize = '16px';
+    subText.textContent = 'Verifying...';
+    subText.style.fontSize = '18px';
     subText.style.color = '#B0B0B0';
     overlay.appendChild(subText);
-    
+
     // Append overlay to body
     document.body.appendChild(overlay);
-    
-    // Change subtext 5 seconds before fading out (at 10 seconds)
-    setTimeout(() => {
-        subText.textContent = 'Loading Finished';
-    }, 10000); // 10 seconds
+
+    // Change subtext over time
+    setTimeout(() => { subText.textContent = 'Checking images..'; }, 3000); // after 3 seconds
+    setTimeout(() => { subText.textContent = 'Checking Connection..'; }, 4000); // 1 second after previous
+    setTimeout(() => { subText.textContent = 'Loading Finished!'; }, 12000); // 3 seconds before fade out
 
     // Hide overlay after 15 seconds
     setTimeout(() => {
+        clearInterval(loadingInterval); // stop loading animation
         overlay.style.transition = 'opacity 0.5s ease';
         overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 500); // remove completely after fade out
+        setTimeout(() => overlay.remove(), 500);
     }, 15000);
 });
