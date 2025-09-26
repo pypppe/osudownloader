@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const title = document.createElement('h1');
     title.textContent = 'Download ';
     const img = document.createElement('img');
-    img.src = 'https://r1.astrarune.com/osu.png';
+    img.src = 'https://raw.githubusercontent.com/pypppe/cdn/refs/heads/main/images/osu.png';
     img.alt = 'osu.png';
     img.style.display = 'block';
     img.style.height = '40px';
@@ -282,6 +282,7 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
 
