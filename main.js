@@ -188,7 +188,7 @@ lazerButton.appendChild(lazerText);
 const lazerImg = document.createElement('img');
 lazerImg.src = 'https://r1.astrarune.com/osu.png';
 lazerImg.alt = 'osu.png';
-lazerImg.style.height = '20px';
+lazerImg.style.height = '30px';
 lazerImg.style.width = 'auto';
 lazerImg.style.verticalAlign = 'middle';
 lazerImg.style.marginLeft = '6px';
@@ -298,4 +298,5 @@ container.appendChild(lazerButton);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
