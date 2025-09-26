@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Append overlay to body
     document.body.appendChild(overlay);
     
+    // Change subtext 5 seconds before fading out (at 10 seconds)
+    setTimeout(() => {
+        subText.textContent = 'Loading Finished';
+    }, 10000); // 10 seconds
+
     // Hide overlay after 15 seconds
     setTimeout(() => {
         overlay.style.transition = 'opacity 0.5s ease';
