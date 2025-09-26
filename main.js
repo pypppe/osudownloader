@@ -152,14 +152,14 @@ requestAnimationFrame(pulseLogo);
     stableLink.href = 'https://m1.ppy.sh/r/osu!install.exe';
     stableLink.target = '_blank';
     const stableButton = document.createElement('button');
-    stableButton.textContent = 'Download osu!';
+    stableButton.textContent = 'Download osu!stable';
     stableLink.appendChild(stableButton);
     container.appendChild(stableLink);
 
     // Lazer button
     const lazerButton = document.createElement('button');
     lazerButton.className = 'lazer-btn';
-    lazerButton.textContent = 'Download Lazer';
+    lazerButton.textContent = 'Download osu!lazer';
     container.appendChild(lazerButton);
 
     // === Add the new info section below buttons ===
@@ -282,6 +282,7 @@ requestAnimationFrame(pulseLogo);
         popupOverlay.style.display = 'flex';
     };
 });
+
 
 
 
