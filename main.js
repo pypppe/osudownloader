@@ -116,6 +116,73 @@ document.addEventListener('DOMContentLoaded', function() {
     lazerButton.textContent = 'Download Lazer';
     container.appendChild(lazerButton);
 
+    // === Add the new info section below buttons ===
+    const infoContainer = document.createElement('div');
+    infoContainer.style.textAlign = 'left';
+    infoContainer.style.marginTop = '20px';
+    infoContainer.style.lineHeight = '1.5';
+    infoContainer.style.color = '#DDD';
+
+    // Often Updates
+    const oftenUpdatesTitle = document.createElement('h3');
+    oftenUpdatesTitle.textContent = 'Often Updates';
+    oftenUpdatesTitle.style.marginBottom = '6px';
+    infoContainer.appendChild(oftenUpdatesTitle);
+
+    const oftenUpdatesList = document.createElement('ul');
+    const oftenItems = [
+        'osu!stable - only gets bug fixes.',
+        'osu!lazer - gets updates nearly daily.'
+    ];
+    oftenItems.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        oftenUpdatesList.appendChild(li);
+    });
+    infoContainer.appendChild(oftenUpdatesList);
+
+    // Important Note
+    const importantNoteTitle = document.createElement('h3');
+    importantNoteTitle.textContent = 'Important Note:';
+    importantNoteTitle.style.marginBottom = '6px';
+    importantNoteTitle.style.marginTop = '12px';
+    infoContainer.appendChild(importantNoteTitle);
+
+    const importantNoteList = document.createElement('ul');
+    const importantItems = [
+        'osu!stable is recommended for low-end devices.',
+        'osu!lazer is recommended for PCs using OptiPlex 3080 or better.'
+    ];
+    importantItems.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        importantNoteList.appendChild(li);
+    });
+    infoContainer.appendChild(importantNoteList);
+
+    // iOS notes
+    const iosTitle = document.createElement('h3');
+    iosTitle.textContent = 'iOS notes:';
+    iosTitle.style.marginBottom = '6px';
+    iosTitle.style.marginTop = '12px';
+    infoContainer.appendChild(iosTitle);
+
+    const iosList = document.createElement('ul');
+    const iosItems = [
+        'osu!stable is not on iOS or Android, nor is it open-sourced, a mobile port is not coming.',
+        'osu!lazer is on iOS and Android, however i don’t think phones are blocked.',
+        'osu!stream is the 2012 version of osu! and is not updated.'
+    ];
+    iosItems.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        iosList.appendChild(li);
+    });
+    infoContainer.appendChild(iosList);
+
+    container.appendChild(infoContainer);
+    // === End of info section ===
+
     // Footer
     const footer = document.createElement('div');
     footer.className = 'footer';
@@ -169,5 +236,3 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
-
-
