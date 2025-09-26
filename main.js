@@ -100,20 +100,34 @@ document.addEventListener('DOMContentLoaded', function() {
     title.appendChild(img);
     container.appendChild(title);
 
-    // Pulse animation
-    let bpm = 120; // Beats per minute
-    let scaleMin = 0.9;
-    let scaleMax = 1.1;
-    let startTime = null;
-    function pulseLogo(timestamp) {
-        if (!startTime) startTime = timestamp;
-        let elapsed = timestamp - startTime;
-        let beat = (elapsed / 1000) * (bpm / 60);
-        let scale = scaleMin + (scaleMax - scaleMin) * 0.5 * (1 + Math.sin(beat * 2 * Math.PI));
-        img.style.transform = `scale(${scale})`;
-        requestAnimationFrame(pulseLogo);
+// Pulse animation (quick grow, slow shrink)
+let bpm = 120; // beats per minute
+let scaleMin = 0.9;
+let scaleMax = 1.15;
+let startTime = null;
+
+function pulseLogo(timestamp) {
+    if (!startTime) startTime = timestamp;
+    let elapsed = timestamp - startTime;
+    let beatProgress = (elapsed / 1000) * (bpm / 60); // beats elapsed
+
+    // Create asymmetric pulse: quick up, slow down
+    // Math.sin gives smooth oscillation; use pow for slower return
+    let raw = Math.sin(beatProgress * 2 * Math.PI); // -1 to 1
+    let scale;
+    if (raw >= 0) {
+        // quick grow
+        scale = scaleMin + (scaleMax - scaleMin) * raw;
+    } else {
+        // slow shrink
+        scale = scaleMin + (scaleMax - scaleMin) * Math.pow(-raw, 0.3); // slows down shrink
     }
+
+    img.style.transform = `scale(${scale})`;
     requestAnimationFrame(pulseLogo);
+}
+
+requestAnimationFrame(pulseLogo);
 
     // Paragraph
     const para = document.createElement('p');
@@ -255,3 +269,4 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.style.display = 'flex';
     };
 });
+
