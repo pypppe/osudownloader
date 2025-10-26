@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadingText.style.marginBottom = '10px';
     overlay.appendChild(loadingText);
 
-    const loadingStates = ['Loading...', 'Loading..', 'Loading.', 'Loading..'];
+    const loadingStates = ['Loading', 'Loading.', 'Loading..', 'Loading...'];
     let loadingIndex = 0;
-    const loadingInterval = setInterval(() => {
+    setInterval(() => {
         loadingText.textContent = loadingStates[loadingIndex];
         loadingIndex = (loadingIndex + 1) % loadingStates.length;
     }, 500); // change every 0.5 second
@@ -48,16 +48,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Append overlay to body
     document.body.appendChild(overlay);
 
-    // Change subtext over time
-setTimeout(() => {
-  subText.textContent = 'Checking Images...';
-}, 0); // starts instantly (or u can delay this if u want)
+    // change subtext over time
+    setTimeout(() => {
+        subText.textContent = 'Checking Images...';
+    }, 0); // instantly
 
-setTimeout(() => {
-  // now start "Running Scripts..." forever
-  let dots = 0;
-  setInterval(() => {
-    dots = (dots + 1) % 4; // cycles between 0–3 dots
-    subText.textContent = 'Running Scripts' + '.'.repeat(dots);
-  }, 500); // every half second
-}, 2000); // switches to running scripts after 2 seconds
+    setTimeout(() => {
+        // now start "Running Scripts..." forever
+        let dots = 0;
+        setInterval(() => {
+            dots = (dots + 1) % 4; // cycles between 0–3 dots
+            subText.textContent = 'Running Scripts' + '.'.repeat(dots);
+        }, 500); // every half second
+    }, 2000); // switch after 2s
+});
