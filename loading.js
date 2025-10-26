@@ -49,15 +49,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(overlay);
 
     // Change subtext over time
-    setTimeout(() => { subText.textContent = 'Running Scripts...'; }, 3000); // after 3 seconds
-    setTimeout(() => { subText.textContent = 'Checking Images...'; }, 2000); // 1 second after previous
-    setTimeout(() => { subText.textContent = 'Finished! ✅'; }, 12000); // 3 seconds before fade out
+setTimeout(() => {
+  subText.textContent = 'Checking Images...';
+}, 0); // starts instantly (or u can delay this if u want)
 
-    // Hide overlay after 15 seconds
-    setTimeout(() => {
-        clearInterval(loadingInterval); // stop loading animation
-        overlay.style.transition = 'opacity 0.5s ease';
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 500);
-    }, 15000);
-});
+setTimeout(() => {
+  // now start "Running Scripts..." forever
+  let dots = 0;
+  setInterval(() => {
+    dots = (dots + 1) % 4; // cycles between 0–3 dots
+    subText.textContent = 'Running Scripts' + '.'.repeat(dots);
+  }, 500); // every half second
+}, 2000); // switches to running scripts after 2 seconds
